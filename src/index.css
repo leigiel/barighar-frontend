@@ -1,0 +1,18 @@
+:root {
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+}
+
+/* Active nav link styling */
+.active {
+  color: var(--color-primary);
+  font-weight: 700;
+  border-bottom: 3px solid var(--color-secondary);
+  padding-bottom: 4px;
+  transition: color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Hover state with accent tone */
+.active:hover {
+  color: var(--color-accent);
+  border-color: var(--color-accent);
+}
