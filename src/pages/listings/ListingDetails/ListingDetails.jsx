@@ -1,46 +1,57 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-
-const mockListing = {
-  title: "Modern Duplex for Sale",
-  location: "Gulshan-2, Dhaka",
-  price: "৳ 1.95 Crore",
-  type: "For Sale",
-  description: "Spacious 4-bedroom duplex with modern amenities, rooftop garden, and 2-car parking.",
-  image: "https://img.daisyui.com/images/house/photo-1523217582562-09d0def993a6.jpg",
-  agent: {
-    name: "Rezaul Karim",
-    phone: "+8801XXXXXX",
-    email: "reza@propertyagent.com",
-  },
-};
+import { fetchListingById } from "../../../lib/api";
 
 const ListingDetails = () => {
   const { id } = useParams();
-  // Later you can fetch listing data using this id
+  const [listing, setListing] = useState(null);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    fetchListingById(id)
+      .then((data) => setListing(data))
+      .catch(() => setError("Listing not found"));
+  }, [id]);
+
+  if (error) return <p className="text-error text-center mt-10">{error}</p>;
+  if (!listing) return <p className="text-center mt-10">Loading...</p>;
 
   return (
     <section className="px-6 lg:px-24 py-16 bg-base-100 text-base-content">
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-        <img src={mockListing.image} alt={mockListing.title} className="rounded-box shadow-lg w-full" />
+      <div className="max-w-3xl mx-auto bg-base-200 rounded-box p-6 shadow-md">
+        <h1 className="text-3xl font-bold text-primary mb-2">
+          {listing.title}
+        </h1>
+        <p className="text-base-content/80 mb-2">
+          {listing.location} • {listing.size}
+        </p>
+        <div className="flex items-center gap-4 mb-4">
+          <span className="badge badge-secondary">{listing.type}</span>
+          <span className="text-xl text-primary font-semibold">
+            ৳ {listing.price}
+          </span>
+        </div>
+        <p className="mb-6">{listing.description}</p>
 
-        <div>
-          <h1 className="text-3xl font-bold text-primary mb-2">{mockListing.title}</h1>
-          <p className="text-base-content/80 mb-2">{mockListing.location}</p>
-          <div className="flex items-center gap-4 mb-4">
-            <span className="badge badge-secondary">{mockListing.type}</span>
-            <span className="text-xl text-primary font-semibold">{mockListing.price}</span>
+        <div className="grid grid-cols-2 gap-4 mb-6">
+          <div>
+            <strong>Bedrooms:</strong> {listing.bedrooms}
           </div>
-          <p className="mb-6">{mockListing.description}</p>
+          <div>
+            <strong>Bathrooms:</strong> {listing.bathrooms}
+          </div>
+          <div className="col-span-2">
+            <strong>Room Types:</strong>{" "}
+            {listing.roomTypes?.join(", ") || "—"}
+          </div>
+          <div className="col-span-2">
+            <strong>Amenities:</strong>{" "}
+            {listing.amenities?.join(", ") || "—"}
+          </div>
+        </div>
 
-          {/* Agent Info */}
-          <div className="bg-base-200 p-6 rounded-box shadow">
-            <h2 className="text-lg font-bold text-secondary mb-2">Contact Agent</h2>
-            <p className="text-base-content/80">{mockListing.agent.name}</p>
-            <p className="text-base-content/80">{mockListing.agent.phone}</p>
-            <p className="text-base-content/80">{mockListing.agent.email}</p>
-            <button className="btn btn-sm btn-accent mt-4 w-full">Send Inquiry</button>
-          </div>
+        <div className="text-sm text-base-content/70">
+          <strong>Posted By:</strong> {listing.postedBy || "admin@barighar.com"}
         </div>
       </div>
     </section>

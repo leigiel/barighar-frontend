@@ -1,26 +1,26 @@
-import React from 'react';
-import HeroSection from '../../components/HeroSection/HeroSection';
-import SearchBar from '../../components/SearchBar/SearchBar';
-import FeaturedListings from '../../components/FeaturedListings/FeaturedListings';
-import ServicesSection from '../../components/ServicesSection/ServicesSection';
-import TestimonialsSection from '../../components/TestimonialsSection/TestimonialsSection';
-import CallToAction from '../../components/CallToAction/CallToAction';
-import NeighborhoodSpotlight from '../../components/NeighborhoodSpotlight/NeighborhoodSpotlight';
-import StatsSection from '../../components/StatsSection/StatsSection';
+import React from 'react'
+import HeroSection from '../../components/HeroSection/HeroSection'
+import SearchBar from '../../components/SearchBar/SearchBar'
+import FeaturedListings from '../../components/FeaturedListings/FeaturedListings'
+import ServicesSection from '../../components/ServicesSection/ServicesSection'
+import NeighborhoodSpotlight from '../../components/NeighborhoodSpotlight/NeighborhoodSpotlight'
+import TestimonialsSection from '../../components/TestimonialsSection/TestimonialsSection'
+import StatsSection from '../../components/StatsSection/StatsSection'
+import CallToAction from '../../components/CallToAction/CallToAction'
 
 const Home = () => {
   return (
-    <>
-    <HeroSection></HeroSection>
-    <SearchBar></SearchBar>
-    <FeaturedListings></FeaturedListings>
-  <ServicesSection></ServicesSection>
-  <NeighborhoodSpotlight></NeighborhoodSpotlight>
-  <TestimonialsSection></TestimonialsSection>
-  <StatsSection></StatsSection>
-  <CallToAction></CallToAction>
-    </>
-  );
-};
+    <main>
+      <HeroSection />
+      <FeaturedListings />
+      <SearchBar />
+      <ServicesSection />
+      <NeighborhoodSpotlight />
+      <TestimonialsSection />
+      <StatsSection />
+      <CallToAction />
+    </main>
+  )
+}
 
-export default Home;
+export default Home

@@ -1,10 +1,16 @@
-const CallToAction = () => {
-  return (
-    <section className="py-16 px-4 lg:px-20 bg-base-200 text-center">
-      <h2 className="text-3xl font-bold text-primary mb-4">Ready to get started?</h2>
-      <p className="text-base-content/80 mb-6">Find your next home or list your property today. Bari Ghar has you covered.</p>
-      <a href="/contact" className="btn btn-accent text-accent-content px-6">Contact Us</a>
-    </section>
-  );
-};
-export default CallToAction;
+import React from 'react'
+import { Link } from 'react-router-dom'
+
+const CallToAction = () => (
+  <section className="py-16 px-6 lg:px-20 bg-primary text-primary-content text-center rounded-box shadow-lg">
+    <h2 className="text-4xl font-bold mb-4">Ready to Find Your Dream Home?</h2>
+    <p className="mb-8 max-w-xl mx-auto">
+      Join thousands of happy customers and browse the best listings today.
+    </p>
+    <Link to="/listings" className="btn btn-secondary btn-lg">
+      Browse Listings
+    </Link>
+  </section>
+)
+
+export default CallToAction
